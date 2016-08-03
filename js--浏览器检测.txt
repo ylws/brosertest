@@ -1,0 +1,53 @@
+function browser(){
+	var broswer=navigator.userAgent.toLowerCase();
+	//360¼±ËÙä¯ÀÀä¯ÀÀÆ÷Óëchromeä¯ÀÀÆ÷Çø±ğ
+	if(window.chrome){
+		
+		//¼ì²âÊÇ·ñÎª¹È¸èÄÚºË
+		if(window.chrome.runtime==undefined||navigator.presentation==undefined||navigator.mediaDevices==undefined){
+			return "360chrome";
+		}
+		else{
+			return "chrome";
+		}
+	}
+	//360ieÅĞ¶Ï
+	if(navigator.appName.indexOf("Microsoft") != -1){
+		var flag = 0;
+		try{
+			window['external']=="";
+		}catch(e){
+			//ieä¯ÀÀÆ÷
+			flag=-1;
+			return "ie8";
+		}
+		if(!flag){
+			//360ä¯ÀÀÆ÷ie
+			return "360ie";
+		}	
+	}
+	//ieÅĞ¶Ï
+	var isie11 = broswer.match(/.(clr)*[rv:]([11.]+)/) != null;
+	var isie10 =broswer.match(/.(msie)[\/: ]([10.]+)/) != null;
+	var isie9 = broswer.match(/.(msie)[\/: ]([9.]+)/) != null;
+	if(isie11){
+		return "ie11";
+	}
+	else if(isie10){
+		return "ie10";
+	}
+	else if(isie9){
+		return "ie9";
+	}
+	//»ğºüä¯ÀÀÆ÷
+	var isfirefox = broswer.match(/firefox/) != null;
+	if(isfirefox){
+		return "firefox";
+	}
+	//Æ»¹ûä¯ÀÀÆ÷
+	var issafari = broswer.match(/safari/) != null;
+	if(issafari){
+		return "safari";
+	}
+}
+console.log(browser())
